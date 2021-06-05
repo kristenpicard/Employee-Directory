@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import API from "../utils/API";
-import FriendCard from "../FriendCard";
-import Title from "../Title";
-import Wrapper from "../Wrapper";
+import EmployeeCard from "../EmployeeCard";
 import SearchForm from "../SearchForm"
 
 class Search extends Component {
