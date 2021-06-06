@@ -48,6 +48,17 @@ class Worker extends Component {
         </div>
 
         <div>
+        <table className="table table-striped table-hover table-bordered table-condensed">
+            <thead className="thead">
+              <tr className="centered">
+                <th>Headshot</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Location</th>
+              </tr>
+            </thead>
+            <tbody>
           {/* If the state is not "sorted", then map and render random employees */}
           {!this.state.sorted
             ? this.state.employees.map((item) => (
@@ -75,6 +86,8 @@ class Worker extends Component {
                 key={item.id.value}
                 />
               ))}
+               </tbody>
+          </table>
         </div>
       </div>
     );
