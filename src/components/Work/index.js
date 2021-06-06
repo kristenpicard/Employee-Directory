@@ -1,44 +1,45 @@
 import React, { Component } from "react";
 import EmployeeCard from "../EmployeeCard";
 import SearchForm from "../SearchForm";
+import SearchResults from "../SearchResults";
 import API from "../../utils/API";
 
 class Worker extends Component {
   state = {
     search: "",
     employees: [],
-    employeeSort: [],
-    sorted: false,
+    results: [],
+    error: ""
   };
 
-  // When the component mounts, get a list of all available base breeds and update this.state.breeds
+  // When the component mounts, get a list of all available employees and update state
   componentDidMount() {
     API.getRandomEmployees()
     .then((res) => {
-      console.log(res);
       this.setState({
-        employees: res.data.results.map((e, i) => ({
-          firstName: e.name.first,
-          lastName: e.name.last,
-          picture: e.picture.large,
-          email: e.email,
-          phone: e.phone,
-          city: e.location.city,
+        employees: res.data.results.map((event) => ({
+          firstName: event.name.first,
+          lastName: event.name.last,
+          picture: event.picture.large,
+          email: event.email,
+          phone: event.phone,
+          city: event.location.city,
+          state:event.location.state
         })),
       });
     })
     .catch((err) => console.log(err));}
 
-  searchEmployee = (filter) => {
-    console.log("Search", filter);
-    const filteredList = this.state.employees.filter((employee) => {
-      // merge data together, then check to see if employee exists
-      let values = Object.values(employee).join("").toLowerCase();
-      return values.indexOf(filter.toLowerCase()) !== -1;
-    });
-    // Update the employee list with the filtered value
-    this.setState({ employees: filteredList });
-  };
+  // searchEmployee = (filter) => {
+  //   console.log("Search", filter);
+  //   const filteredList = this.state.employees.filter((employee) => {
+  //     // merge data together, then check to see if employee exists
+  //     let values = Object.values(employee).join("").toLowerCase();
+  //     return values.indexOf(filter.toLowerCase()) !== -1;
+  //   });
+  //   // Update the employee list with the filtered value
+  //   this.setState({ employees: filteredList });
+  // };
 
   handleInputChange = (event) => {
     this.setState({ search: event.target.value });
@@ -62,8 +63,9 @@ class Worker extends Component {
         <SearchForm
           handleFormSubmit={this.handleFormSubmit}
           handleInputChange={this.handleInputChange}
-          value={this.state.search}
+          employees={this.state.employees}
         />
+        <SearchResults results={this.state.results} />
         {[...this.state.employees].map((item) => (
           <EmployeeCard
             picture={item.picture}
@@ -72,6 +74,7 @@ class Worker extends Component {
             email={item.email}
             phone={item.phone}
             city={item.city}
+            state={item.state}
             key={item.key}
           />
         ))}
