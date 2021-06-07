@@ -10,5 +10,4 @@ let test = {
 
 export default test
 
-console.log(test);
 

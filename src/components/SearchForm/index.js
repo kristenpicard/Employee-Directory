@@ -5,14 +5,14 @@ function SearchForm(props) {
   return (
     <form className="search">
       <div className="form-group">
-        <label htmlFor="employee">Search by Employee Name:&nbsp;</label>
+        <label htmlFor="employee">Search:&nbsp;</label>
        
         <input
           onChange={(event) => props.startSort(event)}
           name="employee"
           type="text"
           className="form"
-          placeholder="Search Employee"
+          placeholder="Enter First or Last Name"
         />
       </div>
     </form>
