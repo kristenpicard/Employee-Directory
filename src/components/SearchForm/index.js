@@ -12,7 +12,7 @@ function SearchForm(props) {
           name="employee"
           type="text"
           className="form"
-          placeholder="Enter First or Last Name"
+          placeholder="Type Here"
         />
       </div>
     </form>

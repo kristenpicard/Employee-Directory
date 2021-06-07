@@ -11,8 +11,8 @@ class Worker extends Component {
     employees: [],
     results: [],
     sorted: false,
-    currentSort: "default",
   };
+  
 
   // When the component mounts, get a list of all available employees and set state
   componentDidMount() {
@@ -59,7 +59,7 @@ class Worker extends Component {
               <tr className="centered">
                 <th>Headshot</th>
                 <th>Name</th>
-                <th>Email</th>
+                <th onClick={() => this.sortBy('firstName')}>Email</th>
                 <th>Phone Number</th>
                 <th>Location</th>
               </tr>

@@ -4,7 +4,7 @@ import axios from "axios";
 
 let test = {
   getRandomEmployees: function() {
-    return axios.get("https://randomuser.me/api/?results=15&nat=us");
+    return axios.get("https://randomuser.me/api/?results=30&nat=us");
   },
 };
 
